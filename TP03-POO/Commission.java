@@ -23,6 +23,11 @@ public class Commission extends Interim {
 
         return  money;
     }
+
+
+    public String toString() {
+        return super.toString() + "the total of vents : " + totalvent;
+    }
     
     
     
