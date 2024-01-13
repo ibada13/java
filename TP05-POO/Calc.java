@@ -7,11 +7,19 @@ public class Calc {
             System.out.print("Enter an expression (or [EXIT] to quit): ");
             String input = scanner.nextLine().trim();
             try {
-                System.out.println(mytruecalc(input));
+                Object x = mytruecalc(input);
+                System.out.println(x);
+                if (x.equals("exited")) {
+                    break;
+                }
             }
-            catch (Myexption err) {
-                System.out.println("the err : " + err.getMessage() + "the cause : " + err.getCause() );
+            catch (ExitEx e) {
+                System.out.println(e.getMessage());
             }
+            catch (Exception err) {
+                System.out.println("the err : " + err.getMessage() + "  the cause : " + err.getCause());
+            }
+
         } while (true);
     }
 
@@ -20,7 +28,7 @@ public class Calc {
         // System.out.println(trueequ.length);
         if (equ.equals("exit")) {
             
-            return "exited";
+            throw new ExitEx();
        }
        
         if (trueequ.length < 2) {
@@ -29,11 +37,14 @@ public class Calc {
         }
         else if (trueequ.length == 2) {
             if (trueequ[0].equals("-")) {
-                return -Integer.parseInt(trueequ[1]);
+                try{
+                    
+                    return -Integer.parseInt(trueequ[1]);
+                } catch (NumberFormatException e) {
+                    throw new Myexption(equ, e, "invalid oprand");
+                }
             }
-            else {
-                throw new Myexption(equ, null, "oprand aer wrong");
-            }
+
         }
         else if (trueequ.length == 3) {
             int x, y;
@@ -43,7 +54,7 @@ public class Calc {
                 y = Integer.parseInt(trueequ[2]);
 
             } catch (NumberFormatException err) {
-                throw new Myexption(equ, err.getCause(), "the opreand are false");
+                throw new Myexption(equ, err, "the opreand are false");
 
             }
             switch (op) {
@@ -56,8 +67,8 @@ public class Calc {
                 case "/":
                     try {
                         return x / y;
-                    } catch (Exception err) {
-                        throw new Myexption(equ, err.getCause(), "you cannot devide by zero");
+                    } catch (ArithmeticException err) {
+                        throw new Myexption(equ, err, "you cannot devide by zero");
                     }
             }
 
