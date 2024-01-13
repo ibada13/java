@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Exer2 {
+
     public static void main(String[] args) {
 
         HashSet<String> corbeille01 = new HashSet<String>(
