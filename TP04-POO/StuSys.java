@@ -40,6 +40,18 @@ public class StuSys {
         return this.sex;
     }
 
+    public String getFirstname() {
+        return this.firstName;
+    }
+
+    public String getMatricule() {
+        return this.matricule;
+    }
+
+    public String getEemail() {
+        return this.email;
+    }
+    
     public String getDep() {
         return this.departement;
     }
