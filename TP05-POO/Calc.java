@@ -15,9 +15,14 @@ public class Calc {
         } while (true);
     }
 
-    public static int mytruecalc(String equ) throws Myexption {
+    public static Object mytruecalc(String equ) throws Myexption {
         String[] trueequ = equ.split("\\s+");
-       System.out.println(trueequ.length);
+        // System.out.println(trueequ.length);
+        if (equ.equals("exit")) {
+            
+            return "exited";
+       }
+       
         if (trueequ.length < 2) {
             throw new Myexption(equ, null, "the size of equ is not enough");
 
@@ -37,7 +42,7 @@ public class Calc {
                 x = Integer.parseInt(trueequ[0]);
                 y = Integer.parseInt(trueequ[2]);
 
-            } catch (Exception err) {
+            } catch (NumberFormatException err) {
                 throw new Myexption(equ, err.getCause(), "the opreand are false");
 
             }
