@@ -3,28 +3,36 @@ import java.util.Scanner;
 public class Calc {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        boolean x;
         do {
             System.out.print("Enter an expression (or [EXIT] to quit): ");
-            String input = scanner.nextLine().trim();
-            try {
-                Object x = mytruecalc(input);
-                System.out.println(x);
-                if (x.equals("exited")) {
-                    break;
-                }
-            }
-            catch (ExitEx e) {
-                System.out.println(e.getMessage());
-            }
-            catch (Exception err) {
-                System.out.println("the err : " + err.getMessage() + "  the cause : " + err.getCause());
-            }
+            // String input = scanner.nextLine().trim();
+           x= Analyseetcal(args.toString());
 
-        } while (true);
+       } while (x);
+       
     }
 
-    public static Object mytruecalc(String equ) throws Myexption {
-        String[] trueequ = equ.split("\\s+");
+    public static boolean Analyseetcal(String input) {
+        try {
+            int x = mytruecalc(input.split("\\s+"));
+            System.out.println("the inputs  is : " + input);
+            System.out.println("the result is : "+ x);
+            
+        }
+        catch (ExitEx e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        catch (Exception err) {
+            System.out.println("the err : " + err.getMessage() + "  the cause : " + err.getCause());
+        }
+        return true;
+    }
+
+    public static int mytruecalc(String[] trueequ) throws Myexption {
+        // String[] trueequ = equ.split("\\s+");
+        String equ = trueequ.toString();
         // System.out.println(trueequ.length);
         if (equ.equals("exit")) {
             
@@ -54,16 +62,18 @@ public class Calc {
                 y = Integer.parseInt(trueequ[2]);
 
             } catch (NumberFormatException err) {
-                throw new Myexption(equ, err, "the opreand are false");
+                throw new EntreeIllegaleException(equ, err, "Argument Illégal");
 
             }
             switch (op) {
                 case "-":
-                    return x - y;
+                    throw new EntreeIllegaleException(equ, null, "Opérateur Illégal");
+                
+                    
                 case "+":
                     return x + y;
                 case "*":
-                    return x * y;
+                    throw new EntreeIllegaleException(equ, null, "Opérateur Illégal");
                 case "/":
                     try {
                         return x / y;
@@ -74,6 +84,6 @@ public class Calc {
 
         }
         
-        throw new Myexption(equ, null, "the equ is big");
+        throw new EntreeIllegaleException(equ, null, "Nombre de Tokens Illégal");
         }
 }
