@@ -18,6 +18,7 @@ public class Ana {
 
         FileWriter filew = new FileWriter("./ana.txt", true);
         List<String> array = File_Array(input);
+        writeinfile(Array_Hash(array), output);
         // HashMap<String , List<String>>
         
     }
@@ -55,7 +56,8 @@ public class Ana {
     public static void writeinfile(HashMap<String, List<String>> hmap , String filew) throws IOException {
         try (BufferedWriter file = new BufferedWriter(new FileWriter(filew))) {
             for (List<String> val : hmap.values()) {
-                file.write(val);
+                file.write(val.toString());
+                file.newLine();
             }
 
         }
