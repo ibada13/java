@@ -8,6 +8,14 @@ public class Moum {
     private String nom;
     private String catégorie;
 
+    Moum() {
+        Moum();
+    }
+
+    Moum(String x) {
+
+    }
+
     private String lieu;
     private Boolean Isopen;
 

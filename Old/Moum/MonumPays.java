@@ -9,7 +9,7 @@ public class MonumPays {
     Scanner Scan = new Scanner(System.in);
 
     public void Read() {
-        int i ;
+        int i;
         System.out.println("enter the name of the country : ");
         Country = Scan.nextLine();
         do {
@@ -19,8 +19,7 @@ public class MonumPays {
                 Moum moum = new Moum();
                 moum.read();
                 this.Moum.add(moum);
-            }
-            else if (i == 2) {
+            } else if (i == 2) {
                 MonRenové mon = new MonRenové();
                 mon.read();
                 this.Moum.add(mon);
@@ -33,7 +32,7 @@ public class MonumPays {
     public void afficher() {
         System.out.println("the country is : ");
         for (Moum i : this.Moum) {
-            System.out.println("moument : "+ i.toString());
+            System.out.println("moument : " + i.toString());
         }
     }
 
