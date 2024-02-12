@@ -1,14 +1,12 @@
 public class X {
-    void method(int a) {
-        System.out.println("ONE");
+    private String x;
+
+    public String getX() {
+        return this.x;
     }
 
-    void method(double d) {
-        System.out.println("TWO");
+    public void setX(String x) {
+        this.x = x;
     }
 
-    void test() {
-        System.out.println("fsfs");
-
-    }
 }
